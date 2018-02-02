@@ -1,10 +1,23 @@
 Rails.application.routes.draw do
-  
+  devise_for :users
+  #devise_for :users
+  root :to => "products#index"
   resources :products
-
-  resource :cart, only:[:show, :destroy] do
+#   resources :users do
+# end
+  resource :carts, only:[:show, :destroy] do
     collection do
-      post :add, path:'add/:id'
+      post :add,to: 'carts#add'
+      # post :add, path:'add/:id'
     end
   end
+
+
+
+
+  # resource :carts, only:[:show, :destroy] do
+  #   collection do
+  #     post :add, path:'add/:id'
+  #   end
+  # end
 end
